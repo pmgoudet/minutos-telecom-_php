@@ -1,0 +1,112 @@
+User (classe base para clientes e admins)
+Admin (herda de User)
+Client (herda de User)
+Auth (gerencia login/logout)
+ClientManager (CRUD de clientes)
+
+
+public function getFullName(): string {
+return "{$this->firstname} {$this->lastname}";
+}
+
+
+
+CREATE TABLE users (
+id INT AUTO_INCREMENT PRIMARY KEY,
+firstname VARCHAR(100) NOT NULL,
+lastname VARCHAR(100) NOT NULL,
+email VARCHAR(150) UNIQUE NOT NULL,
+password VARCHAR(255) NOT NULL,
+role ENUM('admin', 'client') NOT NULL, -- Define se é um admin ou cliente
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE clients (
+id INT PRIMARY KEY, -- Mesma chave da tabela users (herança 1:1)
+address VARCHAR(255) NOT NULL,
+phone VARCHAR(20) NOT NULL,
+FOREIGN KEY (id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE auth_logs (
+id INT AUTO_INCREMENT PRIMARY KEY,
+user_id INT NOT NULL,
+login_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ip_address VARCHAR(45),
+user_agent TEXT,
+FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+
+
+
+1️⃣ Inserir um Administrador
+
+
+
+INSERT INTO users (firstname, lastname, email, password, role)
+VALUES ('Carlos', 'Silva', 'carlos@email.com', SHA2('senha123', 256), 'admin');
+
+
+2️⃣ Inserir um Cliente
+
+sql
+Copier
+Modifier
+
+
+
+INSERT INTO users (firstname, lastname, email, password, role)
+VALUES ('Maria', 'Souza', 'maria@email.com', SHA2('senha123', 256), 'client');
+
+INSERT INTO clients (id, address, phone)
+VALUES (LAST_INSERT_ID(), 'Rua das Flores, 123', '+33 6 12 34 56 78');
+
+
+3️⃣ Selecionar Todos os Clientes
+
+sql
+Copier
+Modifier
+
+
+SELECT u.id, u.firstname, u.lastname, u.email, c.address, c.phone
+FROM users u
+JOIN clients c ON u.id = c.id
+WHERE u.role = 'client';
+
+
+4️⃣ Selecionar um Cliente Específico
+
+sql
+Copier
+Modifier
+
+
+SELECT u.id, u.firstname, u.lastname, u.email, c.address, c.phone
+FROM users u
+JOIN clients c ON u.id = c.id
+WHERE u.email = 'maria@email.com';
+
+
+
+5️⃣ Logar um Usuário (Verificar Senha)
+
+php
+Copier
+Modifier
+
+$email = 'maria@email.com';
+$password = 'senha123';
+
+$stmt = $pdo->prepare("SELECT id, password FROM users WHERE email = ?");
+$stmt->execute([$email]);
+$user = $stmt->fetch();
+
+if ($user && password_verify($password, $user['password'])) {
+echo "Login bem-sucedido!";
+} else {
+echo "Email ou senha incorretos!";
+}
