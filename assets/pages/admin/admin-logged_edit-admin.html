@@ -19,19 +19,18 @@
 
 <body>
   <header class="header-container">
-    <div class="header__logo-container">
-      <h1 class="header__logo">
+    <div class="header__logo-container header__logo-container__connect">
+      <h1 class="header__logo header__logo__connect">
         <a href="../../../index.html"><img class="header__logo-logo__connect"
             src="../../img/logo/logotipo-fundo-escuro-minutos-telecom.png" alt="Logotipo Minutos Telecom" /></a>
       </h1>
     </div>
   </header>
-
   <main>
     <section class="banner-container">
       <div class="banner-img_connect"></div>
       <div class="banner-txt banner-txt_connect">
-        <div class="banner-txt-container banner-txt-container_connect">
+        <div class="banner-txt-container banner-txt-container__connect">
           <div class="banner-txt-container__title-flex">
             <h1 class="banner-txt__title">Espace Admin</h1>
             <img class="banner-txt__icon" src="../../img/icon/area-do-cliente-icon-minutos-telecom.svg" />
@@ -64,43 +63,53 @@
               alt="Ícone Dados Pessoais" />
             <h2 class="options-perso__title">Liste de Clients</h2>
           </a>
-        </div>
-        <div class="liste-clients-container">
-          <div class="options-perso">
-            <img class="connect-form__icon" src="../../img/icon/liste-clients-dark-minutos-telecom.svg"
+          <a href="#" class="options-perso">
+            <img class="options-perso__icon" src="../../img/icon/liste-clients-minutos-telecom.svg"
               alt="Ícone Dados Pessoais" />
-            <h2 class="connect-form__title">Liste de Clients</h2>
-          </div>
-          <div class="liste-clients">
-            <input class="liste-clients__searchbar" type="search" placeholder="Cherchez le client...">
-            <ul class="liste-clients__liste">
-              <li class="liste-clients__liste__item">
-                <p class="liste-clients__liste__item-nom">Mélanie Laurent</p>
-                <a href="#" class="liste-clients__liste__item-btn">Voir</a>
-              </li>
-              <li class="liste-clients__liste__item">
-                <p class="liste-clients__liste__item-nom">Mélanie Laurent</p>
-                <a href="#" class="liste-clients__liste__item-btn">Voir</a>
-              </li>
-              <li class="liste-clients__liste__item">
-                <p class="liste-clients__liste__item-nom">Mélanie Laurent</p>
-                <a href="#" class="liste-clients__liste__item-btn">Voir</a>
-              </li>
-              <li class="liste-clients__liste__item">
-                <p class="liste-clients__liste__item-nom">Mélanie Laurent</p>
-                <a href="#" class="liste-clients__liste__item-btn">Voir</a>
-              </li>
-              <li class="liste-clients__liste__item">
-                <p class="liste-clients__liste__item-nom">Mélanie Laurent</p>
-                <a href="#" class="liste-clients__liste__item-btn">Voir</a>
-              </li>
-              <li class="liste-clients__liste__item">
-                <p class="liste-clients__liste__item-nom">Mélanie Laurent</p>
-                <a href="#" class="liste-clients__liste__item-btn">Voir</a>
-              </li>
-            </ul>
-          </div>
+            <h2 class="options-perso__title">Nouvel Admin</h2>
+          </a>
+          <a href="#" class="options-perso">
+            <img class="options-perso__icon" src="../../img/icon/liste-clients-minutos-telecom.svg"
+              alt="Ícone Dados Pessoais" />
+            <h2 class="options-perso__title">Mes données</h2>
+          </a>
         </div>
+        <div class="options-perso">
+          <img class="connect-form__icon" src="../../img/icon/add-client-icon-dark-minutos-telecom.svg"
+            alt="Ícone Dados Pessoais" />
+          <h2 class="connect-form__title">Nouvel Admin</h2>
+        </div>
+
+        <form class="connect-form" action="" method="POST">
+
+          <div class="form-flex form-flex-nom">
+            <label class="form-label " for="nom-new-admin">Nom</label>
+            <input class="form-input" type="text" id="nom-new-admin" name="nom-new-admin" required />
+          </div>
+
+          <div class="form-flex form-flex-prenom">
+            <label class="form-label" for="prenom-new-admin">Prénom</label>
+            <input class="form-input" type="text" id="prenom-new-admin" name="prenom-new-admin" required />
+          </div>
+
+          <div class="form-flex form-flex-email">
+            <label class="form-label" for="email-new-admin">E-mail</label>
+            <input class="form-input" type="email" id="email-new-admin" name="email-new-admin" required />
+            <p class="form__text-erreur"></p>
+          </div>
+
+          <div class="form-flex mdp-gen form-flex-password">
+            <label class="form-label" for="password-new-admin">Mot de Passe</label>
+            <input class="form-input" type="password" id="password-new-admin" name="password-new-admin" required />
+          </div>
+
+          <div class="form-btn-container">
+            <button class="form-btn" type="reset" name="reset-new-admin" id="reset-new-admin">Annuler</button>
+            <button class="form-btn" type="submit" name="submit-new-admin" id="submit-new-admin">Enregistrer</button>
+          </div>
+
+        </form>
+      </div>
     </section>
     </div>
 
@@ -197,8 +206,7 @@
     </div>
   </footer>
 
-  <!-- <script src="../../js/backoffice-form.js"></script>  -->
-  <!-- AQUI É OUTRO ARQUIVO JS -->
+  <script src="../../js/backoffice-form.js"></script>
 </body>
 
 </html>

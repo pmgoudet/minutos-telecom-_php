@@ -7,11 +7,12 @@
 
 .options-perso-container {
   background-color: var(--cor-azul-marinho);
+  padding: 10px 0;
 }
 
 .accueil-title,
 .options-perso {
-  padding: 20px 30px;
+  padding: 10px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -19,12 +20,12 @@
 
 .accueil-titre__icon,
 .options-perso__icon {
-  height: 25px;
+  height: 20px;
 }
 
 .accueil-titre__title,
 .options-perso__title {
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -142,6 +143,7 @@
   .options-utilisateur__card {
     margin-bottom: 0;
   }
+
 }
 
 @media (min-width: 1025px) {}
