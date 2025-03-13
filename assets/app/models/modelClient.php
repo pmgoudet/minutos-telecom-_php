@@ -6,7 +6,7 @@ class ModelClient
   private string $nom;
   private string $prenom;
   private string $sexe;
-  private DateTime $dateNaissance;
+  private string $dateNaissance;
   private string $adresse;
   private string $complement;
   private int $codePostal;
@@ -69,12 +69,12 @@ class ModelClient
     return $this;
   }
 
-  public function getDateNaissance(): DateTime
+  public function getDateNaissance(): string
   {
     return $this->dateNaissance;
   }
 
-  public function setDateNaissance(DateTime $dateNaissance): self
+  public function setDateNaissance(string $dateNaissance): self
   {
     $this->dateNaissance = $dateNaissance;
     return $this;
@@ -171,8 +171,59 @@ class ModelClient
 
   //METHOD
 
-  //todo function add()
-  //todo function getAll()
-  //todo function getBy----()
+  public function add(): string
+  {
+    try {
+      $req = $this->getBdd()->prepare("INSERT INTO `client` (nom, prenom, sexe, date_naissance, adresse, complement, code_postal, ville, telephone, email, `password`) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 
+      $nom = $this->getNom();
+      $prenom = $this->getPrenom();
+      $sexe = $this->getPrenom();
+      $dateNaissance = $this->getPrenom();
+      $adresse = $this->getPrenom();
+      $complement = $this->getPrenom();
+      $codePostal = $this->getPrenom();
+      $ville = $this->getPrenom();
+      $telephone = $this->getPrenom();
+      $email = $this->getEmail();
+      $password = $this->getPassword();
+
+      $req->bindParam(1, $nom, PDO::PARAM_STR);
+      $req->bindParam(2, $prenom, PDO::PARAM_STR);
+      $req->bindParam(3, $sexe, PDO::PARAM_STR);
+      $req->bindParam(4, $dateNaissance, PDO::PARAM_STR);
+      $req->bindParam(5, $adresse, PDO::PARAM_STR);
+      $req->bindParam(6, $complement, PDO::PARAM_STR);
+      $req->bindParam(7, $codePostal, PDO::PARAM_INT);
+      $req->bindParam(8, $ville, PDO::PARAM_STR);
+      $req->bindParam(9, $telephone, PDO::PARAM_INT);
+      $req->bindParam(10, $email, PDO::PARAM_STR);
+      $req->bindParam(11, $password, PDO::PARAM_STR);
+      $req->execute();
+
+      return "L'enregistrement de $prenom $nom, dont l'email est $email, a été effectué avec succès.";
+    } catch (EXCEPTION $error) {
+      return $error->getMessage();
+    }
+  }
+
+
+
+  //todo function getAll()
+
+
+  public function getByEmail(): array | string
+  {
+    try {
+      $req = $this->getBdd()->prepare("SELECT id, nom, prenom, sexe, date_naissance, adresse, complement, code_postal, ville, telephone, email, `password` FROM `client` WHERE email = ? LIMIT 1");
+      $email = $this->getEmail();
+      $req->bindParam(1, $email, PDO::PARAM_STR);
+      $req->execute();
+      $data = $req->fetchAll(PDO::FETCH_ASSOC);
+
+      return $data;
+    } catch (EXCEPTION $e) {
+      return $e->getMessage();
+    }
+  }
 }

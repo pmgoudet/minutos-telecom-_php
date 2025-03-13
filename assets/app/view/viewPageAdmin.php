@@ -29,7 +29,7 @@ class ViewPageAdmin
               <h2 class="accueil-titre__title">Page d\'Accueil</h2>
             </div>
         <div class="options-perso-container">
-          <a href="#" class="options-perso">
+          <a href="./controllerAddClient.php" class="options-perso">
             <img class="options-perso__icon" src="../../img/icon/add-client-icon-minutos-telecom.svg"
               alt="Ícone Dados Pessoais" />
             <h2 class="options-perso__title">Nouveau Client</h2>

@@ -6,6 +6,9 @@ ClientManager (CRUD de clientes)
 
 
 
+-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
 CREATE DATABASE minutos;
 USE minutos;
 
@@ -17,7 +20,20 @@ email VARCHAR(100) UNIQUE NOT NULL,
 `password` VARCHAR(255) NOT NULL
 );
 
-
+CREATE TABLE IF NOT EXISTS `client` (
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    nom VARCHAR(100) NOT NULL,
+    prenom VARCHAR(100) NOT NULL,
+    sexe VARCHAR(10) NOT NULL,
+    date_naissance DATE NOT NULL,
+    adresse VARCHAR(200) NOT NULL,
+    complement VARCHAR(100) NOT NULL,
+    code_postal INT NOT NULL,
+	ville VARCHAR(100) NOT NULL,
+	telephone INT NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    `password` VARCHAR(255) NOT NULL
+);
 
 
 

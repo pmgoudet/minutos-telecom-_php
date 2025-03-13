@@ -106,7 +106,7 @@ class ViewPageAddClient
 
           <div class="form-flex form-flex-telephone">
             <label class="form-label" for="telephone">Téléphone</label>
-            <input class="form-input" type="tel" id="telephone" name="telephone" required />
+            <input class="form-input" type="tel" id="telephone" name="telephone" id="telephone" pattern="^(\+33|0)[1-9]([ .-]?[0-9]{2}){4}$"" required>
             <p class="form__text-erreur"></p>
           </div>
 
