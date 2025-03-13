@@ -87,13 +87,37 @@ class ModelAdmin
 
   //METHOD
 
-  //todo function add()
+  public function add(): string
+  {
+    try {
+      $req = $this->getBdd()->prepare("INSERT INTO `admin` (`nom`, prenom, `email`, `password`) VALUES (?,?,?,?);");
+
+      $nom = $this->getNom();
+      $prenom = $this->getPrenom();
+      $email = $this->getEmail();
+      $password = $this->getPassword();
+
+      $req->bindParam(1, $nom, PDO::PARAM_STR);
+      $req->bindParam(2, $prenom, PDO::PARAM_STR);
+      $req->bindParam(3, $email, PDO::PARAM_STR);
+      $req->bindParam(4, $password, PDO::PARAM_STR);
+      $req->execute();
+
+      return "L'enregistrement de $prenom $nom, dont l'email est $email, a été effectué avec succès.";
+    } catch (EXCEPTION $error) {
+      return $error->getMessage();
+    }
+  }
+
+
   //todo function getAll()
+
+
 
   public function getByEmail(): array | string
   {
     try {
-      $req = $this->getBdd()->prepare("SELECT id, nom, prenom, email FROM users WHERE email = ? LIMIT 1");
+      $req = $this->getBdd()->prepare("SELECT id, nom, prenom, email, `password` FROM `admin` WHERE email = ? LIMIT 1");
       $email = $this->getEmail();
       $req->bindParam(1, $email, PDO::PARAM_STR);
       $req->execute();

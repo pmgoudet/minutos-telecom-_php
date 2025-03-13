@@ -9,11 +9,10 @@ include "../view/viewFooter.php";
 
 session_start();
 
-class ControllerLoginAdmin
+class controllerLoginAddClient
 {
 
   private ?ViewPageAdmin $viewPageAdmin;
-  private ?ViewPageAdminDeco $viewPageAdminDeco;
   private ?ViewHeader $viewHeader;
   private ?ViewFooter $viewFooter;
   private ?ModelAdmin $modelAdmin;

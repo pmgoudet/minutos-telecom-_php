@@ -82,16 +82,14 @@
 
         <section class="login-container">
             <h2 class="login-container__titulo">Central do Assinante</h2>
-            <!-- AQUI VAI A PÁGINA A TRATAR O FORMULARIO NO ACTION -->
-            <!-- UNE FOIS MIS LE LIEN, JE TRAITE LE FORM NORMALEMENT ET UNE FOIS CONNECTE JE REDIRECT -->
-            <form class="login-form" action="form.php" method="POST" name="form">
+            <form class="login-form" action="area-do-cliente_form.php" method="POST" name="form">
                 <label for="cpf-cnpj">CPF / CNPJ:</label>
                 <input type="text" id="cpf-cnpj" name="cpf-cnpj" placeholder="Escreva sem espaços, pontos ou traços"
                     maxlength="18" required>
                 <label for="password">Senha:</label>
                 <input type="password" id="password" name="password" minlength="8" maxlength="20"
                     placeholder="Digite sua senha" required>
-                <button type="submit" class="button-flex">
+                <button type="submit" name="submit" class="button-flex">
                     <p>Entrar</p> <img src="../img/icon/porta-icon-minutos-telecom.svg"
                         alt="Ícone de entrar para se conectar">
                 </button>

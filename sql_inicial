@@ -6,6 +6,16 @@ ClientManager (CRUD de clientes)
 
 
 
+CREATE DATABASE minutos;
+USE minutos;
+
+CREATE TABLE IF NOT EXISTS `admin` (
+id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+nom VARCHAR(100) NOT NULL,
+prenom VARCHAR(100) NOT NULL,
+email VARCHAR(100) UNIQUE NOT NULL,
+`password` VARCHAR(255) NOT NULL
+);
 
 
 
