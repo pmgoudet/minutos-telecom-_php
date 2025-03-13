@@ -5,6 +5,66 @@ Auth (gerencia login/logout)
 ClientManager (CRUD de clientes)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 public function getFullName(): string {
 return "{$this->firstname} {$this->lastname}";
 }
