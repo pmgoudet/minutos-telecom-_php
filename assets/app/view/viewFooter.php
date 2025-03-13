@@ -2,6 +2,20 @@
 
 class ViewFooter
 {
+
+  private ?string $script;
+
+  public function getScript(): ?string
+  {
+    return $this->script;
+  }
+
+  public function setScript(?string $script): self
+  {
+    $this->script = $script;
+    return $this;
+  }
+
   public function displayView(): string
   {
     return ('
@@ -94,14 +108,17 @@ class ViewFooter
             | Todos os direitos reservados.
           </p>
         </div>
-      </footer>
+      </footer>'
+      .
+      $this->getScript()
+      .
 
-      <!-- <script src="../../js/backoffice-form.js"></script>  -->
-      <!-- AQUI É OUTRO ARQUIVO JS -->
-    </body>
+      '</body>
     </html>
     ');
   }
 }
 
-//!ATENÇÃO AOS ARQUIVOS JS
+if (basename($_SERVER['SCRIPT_NAME']) === "minutos-telecom-_php/assets/app/controllers/controllerAddClient.php") {
+  $this->setScript('<script src="../../js/backoffice-form.js"></script>');
+}

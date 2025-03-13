@@ -74,7 +74,7 @@ class ControllerAddClient
 
   //METHOD
 
-  public function addAdmin(): string
+  public function addClient(): string
   {
     $msg = '';
 
@@ -87,7 +87,6 @@ class ControllerAddClient
         && isset($_POST['sexe']) && !empty($_POST['sexe'])
         && isset($_POST['date_naissance']) && !empty($_POST['date_naissance'])
         && isset($_POST['adresse']) && !empty($_POST['adresse'])
-        && isset($_POST['complement']) && !empty($_POST['complement'])
         && isset($_POST['code_postal']) && !empty($_POST['code_postal'])
         && isset($_POST['ville']) && !empty($_POST['ville'])
         && isset($_POST['telephone']) && !empty($_POST['telephone'])
@@ -97,6 +96,9 @@ class ControllerAddClient
 
         //validation adresse mail
         if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+
+          //complement peut etre null
+          $complement = isset($_POST['complement']) && !empty($_POST['complement']) ? $_POST['complement'] : null;
 
           $nom = sanitize($_POST['nom']);
           $prenom = sanitize($_POST['prenom']);
@@ -109,6 +111,7 @@ class ControllerAddClient
           $telephone = sanitize($_POST['telephone']);
           $email = sanitize($_POST['email']);
           $password = sanitize($_POST['password']);
+          $status = sanitize($_POST['status']);
 
 
           //verification du mail
@@ -116,7 +119,7 @@ class ControllerAddClient
             $data = $this->getModelClient()->setEmail($email)->getByEmail();
 
             if (empty($data)) {
-              $this->getModelClient()->setNom($nom)->setPrenom($prenom)->setSexe($sexe)->setDateNaissance($dateNaissance)->setAdresse($adresse)->setComplement($complement)->setCodePostal($codePostal)->setVille($ville)->setTelephone($telephone)->setEmail($email)->setPassword($password);
+              $this->getModelClient()->setNom($nom)->setPrenom($prenom)->setSexe($sexe)->setDateNaissance($dateNaissance)->setAdresse($adresse)->setComplement($complement)->setCodePostal($codePostal)->setVille($ville)->setTelephone($telephone)->setEmail($email)->setPassword($password)->setStatus($status);
 
               $msg = $this->getModelClient()->add();
             } else {
@@ -135,16 +138,11 @@ class ControllerAddClient
     return $msg;
   }
 
-  public function addClient(): string
-  {
-    return '';
-  }
-
   public function render(): void
   {
     echo $this->setViewHeader(new ViewHeader)->getViewHeader()->displayView();
 
-    echo $this->getViewPageAddClient()->setMessage($this->addAdmin())->displayView();
+    echo $this->getViewPageAddClient()->setMessage($this->addClient())->displayView();
 
     echo $this->setViewFooter(new ViewFooter)->getViewFooter()->displayView();
   }

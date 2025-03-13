@@ -8,12 +8,13 @@ class ModelClient
   private string $sexe;
   private string $dateNaissance;
   private string $adresse;
-  private string $complement;
+  private ?string $complement;
   private int $codePostal;
   private string $ville;
   private int $telephone;
   private string $email;
   private string $password;
+  private string $status;
   private PDO $bdd;
 
   //CONSTRUCT
@@ -91,12 +92,12 @@ class ModelClient
     return $this;
   }
 
-  public function getComplement(): string
+  public function getComplement(): ?string
   {
     return $this->complement;
   }
 
-  public function setComplement(string $complement): self
+  public function setComplement(string $complement): ?self
   {
     $this->complement = $complement;
     return $this;
@@ -157,6 +158,17 @@ class ModelClient
     return $this;
   }
 
+  public function getStatus(): string
+  {
+    return $this->status;
+  }
+
+  public function setStatus(string $status): self
+  {
+    $this->status = $status;
+    return $this;
+  }
+
   public function getBdd(): PDO
   {
     return $this->bdd;
@@ -174,31 +186,35 @@ class ModelClient
   public function add(): string
   {
     try {
-      $req = $this->getBdd()->prepare("INSERT INTO `client` (nom, prenom, sexe, date_naissance, adresse, complement, code_postal, ville, telephone, email, `password`) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+      $req = $this->getBdd()->prepare("INSERT INTO `client` 
+      (nom, prenom, sexe, date_naissance, adresse, complement, code_postal, ville, telephone, email, `password`, `status`) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
       $nom = $this->getNom();
       $prenom = $this->getPrenom();
-      $sexe = $this->getPrenom();
-      $dateNaissance = $this->getPrenom();
-      $adresse = $this->getPrenom();
-      $complement = $this->getPrenom();
-      $codePostal = $this->getPrenom();
-      $ville = $this->getPrenom();
-      $telephone = $this->getPrenom();
+      $sexe = $this->getSexe();
+      $dateNaissance = $this->getDateNaissance();
+      $adresse = $this->getAdresse();
+      $complement = $this->getComplement();
+      $codePostal = $this->getCodePostal();
+      $ville = $this->getVille();
+      $telephone = $this->getTelephone();
       $email = $this->getEmail();
       $password = $this->getPassword();
+      $status = $this->getStatus();
 
       $req->bindParam(1, $nom, PDO::PARAM_STR);
       $req->bindParam(2, $prenom, PDO::PARAM_STR);
       $req->bindParam(3, $sexe, PDO::PARAM_STR);
       $req->bindParam(4, $dateNaissance, PDO::PARAM_STR);
       $req->bindParam(5, $adresse, PDO::PARAM_STR);
-      $req->bindParam(6, $complement, PDO::PARAM_STR);
-      $req->bindParam(7, $codePostal, PDO::PARAM_INT);
+      $req->bindParam(6, $complement, $complement === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+      $req->bindParam(7, $codePostal, PDO::PARAM_STR);
       $req->bindParam(8, $ville, PDO::PARAM_STR);
-      $req->bindParam(9, $telephone, PDO::PARAM_INT);
+      $req->bindParam(9, $telephone, PDO::PARAM_STR);
       $req->bindParam(10, $email, PDO::PARAM_STR);
       $req->bindParam(11, $password, PDO::PARAM_STR);
+      $req->bindParam(12, $status, PDO::PARAM_STR);
       $req->execute();
 
       return "L'enregistrement de $prenom $nom, dont l'email est $email, a été effectué avec succès.";
@@ -206,7 +222,6 @@ class ModelClient
       return $error->getMessage();
     }
   }
-
 
 
   //todo function getAll()

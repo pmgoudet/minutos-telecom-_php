@@ -138,6 +138,8 @@ class ViewPageAddClient
             <button class="form-btn" type="reset" name="reset-add-client" id="reset-add-client">Annuler</button>
             <button class="form-btn" type="submit" name="submit-add-client" id="submit-add-client">Enregistrer</button>
           </div>
+
+          <p>' . $this->getMessage() . '</p>
         </form>
 
       </div>
