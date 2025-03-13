@@ -110,8 +110,6 @@ class ControllerAddClient
           $email = sanitize($_POST['email']);
           $password = sanitize($_POST['password']);
 
-          //format de date accepté par SQL
-          $dateNaissance = DateTime::createFromFormat('d/m/Y', $dateNaissance)->format('Y-m-d');
 
           //verification du mail
           try {
@@ -146,7 +144,7 @@ class ControllerAddClient
   {
     echo $this->setViewHeader(new ViewHeader)->getViewHeader()->displayView();
 
-    echo $this->getViewPageAddClient()->displayView();
+    echo $this->getViewPageAddClient()->setMessage($this->addAdmin())->displayView();
 
     echo $this->setViewFooter(new ViewFooter)->getViewFooter()->displayView();
   }
