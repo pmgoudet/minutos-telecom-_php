@@ -69,7 +69,7 @@ class viewHeader
                 <h1 class="banner-txt__title">Espace Admin</h1>
                 <img class="banner-txt__icon" src="../../img/icon/area-do-cliente-icon-minutos-telecom.svg" />
             </div>
-            <p class="banner-txt__texto">Bonjour, <strong>Minutos</strong></p>
+            <p class="banner-txt__texto">Bonjour, <strong>' . $_SESSION['prenom'] . '</strong></p>
             <a class="banner-txt__btn banner-txt__btn_connect" href="./deco.php">
                 Déconnexion
                 <img class="banner-txt__btn__icon" src="../../img/icon/logout-icon-minutos-telecom.svg"
