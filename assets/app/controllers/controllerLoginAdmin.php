@@ -153,7 +153,7 @@ class ControllerLoginAdmin
       $clientList = $clientList . "
       <li class='liste-clients__liste__item'>
         <p class='liste-clients__liste__item-nom'>{$client['prenom']} {$client['nom']}</p>
-        <a href='#' class='liste-clients__liste__item-btn'>Voir</a>
+        <a href='./controllerEditAdmin.php?id={$client['id']}' class='liste-clients__liste__item-btn'>Voir</a>
       </li>";
     }
 

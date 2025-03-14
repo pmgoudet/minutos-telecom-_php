@@ -74,6 +74,13 @@ class ControllerAddClient
 
   //METHOD
 
+
+  public function script(): void
+  {
+    $script = "<script src='../../js/backoffice-form.js'></script>";
+    $this->getViewFooter()->setScript($script);
+  }
+
   public function addClient(): string
   {
     $msg = '';
@@ -144,7 +151,9 @@ class ControllerAddClient
 
     echo $this->getViewPageAddClient()->setMessage($this->addClient())->displayView();
 
-    echo $this->setViewFooter(new ViewFooter)->getViewFooter()->displayView();
+    $this->setViewFooter(new ViewFooter);
+    $this->script();
+    echo $this->getViewFooter()->displayView();
   }
 }
 

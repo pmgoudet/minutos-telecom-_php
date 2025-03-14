@@ -60,14 +60,14 @@ class ViewPageAddAdmin
 
             <form class="connect-form" action="" method="POST">
 
-              <div class="form-flex form-flex-nom">
-                <label class="form-label " for="nom-new-admin">Nom</label>
-                <input class="form-input" type="text" id="nom-new-admin" name="nom-new-admin" required />
-              </div>
-
               <div class="form-flex form-flex-prenom">
                 <label class="form-label" for="prenom-new-admin">Prénom</label>
                 <input class="form-input" type="text" id="prenom-new-admin" name="prenom-new-admin" required />
+              </div>
+
+              <div class="form-flex form-flex-nom">
+                <label class="form-label " for="nom-new-admin">Nom</label>
+                <input class="form-input" type="text" id="nom-new-admin" name="nom-new-admin" required />
               </div>
 
               <div class="form-flex form-flex-email">

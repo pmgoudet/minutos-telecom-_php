@@ -108,7 +108,11 @@ class ViewFooter
             | Todos os direitos reservados.
           </p>
         </div>
-      </footer></body>
+      </footer>'
+
+      . $this->getScript() .
+
+      '</body>
     </html>
     ');
   }

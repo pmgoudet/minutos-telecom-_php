@@ -123,7 +123,20 @@ class ModelAdmin
     }
   }
 
+  public function getById(): array | string
+  {
+    try {
+      $req = $this->getBdd()->prepare("SELECT id, nom, prenom, email, `password` FROM `admin` WHERE id = ? LIMIT 1");
+      $id = $this->getId();
+      $req->bindParam(1, $id, PDO::PARAM_STR);
+      $req->execute();
+      $data = $req->fetchAll(PDO::FETCH_ASSOC);
 
+      return $data;
+    } catch (EXCEPTION $e) {
+      return $e->getMessage();
+    }
+  }
 
   public function getByEmail(): array | string
   {

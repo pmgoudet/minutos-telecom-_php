@@ -59,14 +59,15 @@ class ViewPageAddClient
           </div>
 
         <form class="connect-form" action="" method="POST">
+
           <div class="form-flex form-flex-nom">
             <label class="form-label " for="nom">Nom</label>
-            <input class="form-input" type="text" id="nom" name="nom" required />
+            <input class="form-input" type="text" id="nom" name="nom" maxlength="20" required />
           </div>
 
           <div class="form-flex form-flex-prenom">
             <label class="form-label" for="prenom">Prénom</label>
-            <input class="form-input" type="text" id="prenom" name="prenom" required />
+            <input class="form-input" type="text" id="prenom" name="prenom" maxlength="20" required />
           </div>
 
           <div class="form-flex form-flex-sexe">
@@ -86,35 +87,35 @@ class ViewPageAddClient
 
           <div class="form-flex form-flex-adresse">
             <label class="form-label" for="adresse">Adresse</label>
-            <input class="form-input" type="text" id="adresse" name="adresse" required />
+            <input class="form-input" type="text" id="adresse" name="adresse" maxlength="50" required />
           </div>
 
           <div class="form-flex form-flex-complement">
             <label class="form-label" for="complement">Complément</label>
-            <input class="form-input" type="text" id="complement" name="complement" />
+            <input class="form-input" type="text" id="complement" name="complement" maxlength="20"/>
           </div>
 
           <div class="form-cp_ville-flex ">
             <div class="form-flex form-flex-code_postal">
               <label class="form-label" for="code_postal">Code Postal</label>
-              <input class="form-input" type="text" id="code_postal" name="code_postal" required />
+              <input class="form-input" type="text" id="code_postal" name="code_postal" maxlength="5" required />
               <p class="form__text-erreur"></p>
             </div>
             <div class="form-flex form-flex-ville">
               <label class="form-label" for="ville">Ville</label>
-              <input class="form-input" type="text" id="ville" name="ville" required />
+              <input class="form-input" type="text" id="ville" name="ville" maxlength="30" required />
             </div>
           </div>
 
           <div class="form-flex form-flex-telephone">
             <label class="form-label" for="telephone">Téléphone</label>
-            <input class="form-input" type="tel" id="telephone" name="telephone" id="telephone" pattern="^(\+33|0)[1-9]([ .-]?[0-9]{2}){4}$"" required>
+            <input class="form-input" type="tel" id="telephone" name="telephone" id="telephone" maxlength="20" required>
             <p class="form__text-erreur"></p>
           </div>
 
           <div class="form-flex form-flex-email">
             <label class="form-label" for="email">E-mail</label>
-            <input class="form-input" type="email" id="email" name="email" required />
+            <input class="form-input" type="email" id="email" name="email" maxlength="50" required />
             <p class="form__text-erreur"></p>
           </div>
 

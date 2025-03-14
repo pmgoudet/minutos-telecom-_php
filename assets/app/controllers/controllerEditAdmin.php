@@ -16,6 +16,7 @@ class ControllerEditAdmin
   private ?ViewFooter $viewFooter;
   private ?ModelAdmin $modelAdmin;
 
+
   //CONSTRUCT
 
   public function __construct(?ViewPageEditAdmin $viewPageEditAdmin, ?ModelAdmin $newModelAdmin)
@@ -24,14 +25,15 @@ class ControllerEditAdmin
     $this->modelAdmin = $newModelAdmin;
   }
 
+
   //GETTER ET SETTER
 
-  public function getViewPageAddAdmin(): ?ViewPageEditAdmin
+  public function getViewPageEditAdmin(): ?ViewPageEditAdmin
   {
     return $this->viewPageEditAdmin;
   }
 
-  public function setViewPageAddAdmin(?ViewPageEditAdmin $viewPageEditAdmin): self
+  public function setViewPageEditAdmin(?ViewPageEditAdmin $viewPageEditAdmin): self
   {
     $this->viewPageEditAdmin = $viewPageEditAdmin;
     return $this;
@@ -70,14 +72,29 @@ class ControllerEditAdmin
     return $this;
   }
 
+
   //METHOD
+
+  public function script(): void
+  {
+    // $script = "<script src='../../js/backoffice-form.js'></script>";
+    // $this->getViewFooter()->setScript($script);
+  }
 
   public function showAdmin(): string
   {
+    if (isset($_GET['id'])) {
 
-    $data = $this->getModelAdmin()->setEmail($_SERVER['email'])->getByEmail();
+      $id = $_GET['id'];
+      $data = $this->getModelAdmin()->setId($id)->getById();
 
+      $this->getViewPageEditAdmin()->setPrenom($data[0]['prenom']);
+      $this->getViewPageEditAdmin()->setNom($data[0]['nom']);
+      $this->getViewPageEditAdmin()->setEmail($data[0]['email']);
+      $this->getViewPageEditAdmin()->setPassword($data[0]['password']);
 
+      // echo "O ID da div é: " . htmlspecialchars($id);
+    }
 
     return '';
   }
@@ -91,7 +108,8 @@ class ControllerEditAdmin
   {
     echo $this->setViewHeader(new ViewHeader)->getViewHeader()->displayView();
 
-    echo $this->getViewPageAddAdmin()->displayView();
+    $this->showAdmin();
+    echo $this->getViewPageEditAdmin()->displayView();
 
     echo $this->setViewFooter(new ViewFooter)->getViewFooter()->displayView();
   }

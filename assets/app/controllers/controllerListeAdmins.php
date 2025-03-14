@@ -71,9 +71,6 @@ class ControllerListeAdmin
   }
 
 
-
-  //METHOD
-
   //METHOD
 
   public function readAdmins(): array | string
@@ -86,7 +83,7 @@ class ControllerListeAdmin
       $adminList = $adminList . "
       <li class='liste-clients__liste__item'>
         <p class='liste-clients__liste__item-nom'>{$admin['prenom']} {$admin['nom']}</p>
-        <a href='#' class='liste-clients__liste__item-btn'>Voir</a>
+        <a href='./controllerEditAdmin.php?id={$admin['id']}' class='liste-clients__liste__item-btn'>Voir</a>
       </li>";
     }
 
