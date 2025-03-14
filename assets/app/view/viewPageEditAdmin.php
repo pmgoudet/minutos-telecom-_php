@@ -1,9 +1,14 @@
 <?php
 
-class ViewPageAddAdmin
+class ViewPageEditAdmin
 {
 
   private ?string $message = '';
+  private string $nom;
+  private string $prenom;
+  private string $email;
+  private string $password;
+
 
   public function getMessage(): ?string
   {
@@ -13,6 +18,50 @@ class ViewPageAddAdmin
   public function setMessage(?string $newMessage): self
   {
     $this->message = $newMessage;
+    return $this;
+  }
+
+  public function getNom(): string
+  {
+    return $this->nom;
+  }
+
+  public function setNom(string $nom): self
+  {
+    $this->nom = $nom;
+    return $this;
+  }
+
+  public function getPrenom(): string
+  {
+    return $this->prenom;
+  }
+
+  public function setPrenom(string $prenom): self
+  {
+    $this->prenom = $prenom;
+    return $this;
+  }
+
+  public function getEmail(): string
+  {
+    return $this->email;
+  }
+
+  public function setEmail(string $email): self
+  {
+    $this->email = $email;
+    return $this;
+  }
+
+  public function getPassword(): string
+  {
+    return $this->password;
+  }
+
+  public function setPassword(string $password): self
+  {
+    $this->password = $password;
     return $this;
   }
 
@@ -55,35 +104,36 @@ class ViewPageAddAdmin
             <div class="options-perso">
               <img class="connect-form__icon" src="../../img/icon/add-client-icon-dark-minutos-telecom.svg"
                 alt="Ícone Dados Pessoais" />
-              <h2 class="connect-form__title">Nouvel Admin</h2>
+              <h2 class="connect-form__title">Mes données</h2>
             </div>
 
             <form class="connect-form" action="" method="POST">
 
               <div class="form-flex form-flex-nom">
-                <label class="form-label " for="nom-new-admin">Nom</label>
-                <input class="form-input" type="text" id="nom-new-admin" name="nom-new-admin" required />
+                <label class="form-label " for="nom-edit-admin">Nom</label>
+                <input class="form-input" type="text" id="nom-edit-admin" name="nom-edit-admin"  required disabled />
               </div>
 
               <div class="form-flex form-flex-prenom">
-                <label class="form-label" for="prenom-new-admin">Prénom</label>
-                <input class="form-input" type="text" id="prenom-new-admin" name="prenom-new-admin" required />
+                <label class="form-label" for="prenom-edit-admin">Prénom</label>
+                <input class="form-input" type="text" id="prenom-edit-admin" name="prenom-edit-admin" required disabled />
               </div>
 
               <div class="form-flex form-flex-email">
-                <label class="form-label" for="email-new-admin">E-mail</label>
-                <input class="form-input" type="email" id="email-new-admin" name="email-new-admin" required />
+                <label class="form-label" for="email-edit-admin">E-mail</label>
+                <input class="form-input" type="email" id="email-edit-admin" name="email-edit-admin" required disabled />
                 <p class="form__text-erreur"></p>
               </div>
 
               <div class="form-flex mdp-gen form-flex-password">
-                <label class="form-label" for="password-new-admin">Mot de Passe</label>
-                <input class="form-input" type="password" id="password-new-admin" name="password-new-admin" required />
+                <label class="form-label" for="password-edit-admin">Mot de Passe</label>
+                <input class="form-input" type="password" id="password-edit-admin" name="password-edit-admin" required disabled />
               </div>
 
               <div class="form-btn-container">
-                <button class="form-btn" type="reset" name="reset-new-admin" id="reset-new-admin">Annuler</button>
-                <button class="form-btn" type="submit" name="submit-new-admin" id="submit-new-admin">Enregistrer</button>
+                <button class="form-btn" type="" name="edit-admin" id="reset-edit-admin">Annuler</button>
+                <button class="form-btn" type="reset" name="reset-edit-admin" id="reset-edit-admin">Annuler</button>
+                <button class="form-btn" type="submit" name="submit-edit-admin" id="submit-edit-admin">Enregistrer</button>
               </div>
 
               <p>' . $this->getMessage() . '</p>
@@ -96,3 +146,9 @@ class ViewPageAddAdmin
     ');
   }
 }
+
+
+// <div class="form-flex form-flex-nom">
+// <label class="form-label " for="nom">Nom</label>
+// <input class="form-input" type="text" id="nom" name="nom" value="Laurent" required disabled disabled />
+// </div>

@@ -32,10 +32,22 @@ CREATE TABLE IF NOT EXISTS `client` (
 	ville VARCHAR(100) NOT NULL,
 	telephone INT NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    `password` VARCHAR(255) NOT NULL
+    `password` VARCHAR(255) NOT NULL,
+    `status` VARCHAR(50) NOT NULL
 );
 
-
+INSERT INTO `client` (nom, prenom, sexe, date_naissance, adresse, complement, code_postal, ville, telephone, email, password, status)
+VALUES
+('Hallyday', 'Johnny', 'Homme', '1943-06-15', '1 rue de la Paix', 'Apt 101', 75001, 'Paris', 1234567890, 'johnny.hallyday@email.com', '1234', 'actif'),
+('Deneuve', 'Catherine', 'Femme', '1943-10-22', '25 rue des Champs', 'Apt 12', 69002, 'Lyon', 2345678901, 'catherine.deneuve@email.com', '1234', 'inactif'),
+('Bardot', 'Brigitte', 'Femme', '1934-09-28', '15 avenue de la République', 'Apt 205', 13003, 'Marseille', 3456789012, 'brigitte.bardot@email.com', '1234', 'actif'),
+('Gainsbourg', 'Serge', 'Homme', '1928-04-02', '10 rue Victor Hugo', 'Apt 3', 21000, 'Dijon', 4567890123, 'serge.gainsbourg@email.com', '1234', 'actif'),
+('Aznavour', 'Charles', 'Homme', '1924-05-22', '8 boulevard Saint-Germain', 'Apt 304', 75005, 'Paris', 5678901234, 'charles.aznavour@email.com', '1234', 'inactif'),
+('Piaf', 'Edith', 'Femme', '1915-12-19', '12 rue de la Liberté', 'Apt 407', 59000, 'Lille', 6789012345, 'edith.piaf@email.com', '1234', 'actif'),
+('Vuitton', 'Louis', 'Homme', '1821-08-04', '20 avenue de la Gare', 'Apt 22', 44000, 'Nantes', 7890123456, 'louis.vuitton@email.com', '1234', 'actif'),
+('Lemoine', 'Lucie', 'Femme', '1989-01-21', '5 rue de la Paix', 'Apt 105', 75003, 'Paris', 8901234567, 'lucie.lemoine@email.com', '1234', 'inactif'),
+('Clerc', 'Julien', 'Homme', '1948-07-04', '45 rue du Moulin', 'Apt 2', 33000, 'Bordeaux', 9012345678, 'julien.clerc@email.com', '1234', 'actif'),
+('Saget', 'Jacques', 'Homme', '1951-11-27', '6 rue de la Montagne', 'Apt 308', 69000, 'Lyon', 1234098765, 'jacques.saget@email.com', '1234', 'inactif');
 
 
 

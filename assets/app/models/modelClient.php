@@ -224,8 +224,18 @@ class ModelClient
   }
 
 
-  //todo function getAll()
+  public function getAll(): array | string
+  {
+    try {
+      $req = $this->getBdd()->prepare('SELECT id, nom, prenom, sexe, date_naissance, adresse, complement, code_postal, ville, telephone, email, `password` FROM `client`');
+      $req->execute();
+      $data = $req->fetchAll(PDO::FETCH_ASSOC);
 
+      return $data;
+    } catch (EXCEPTION $e) {
+      return $e->getMessage();
+    }
+  }
 
   public function getByEmail(): array | string
   {

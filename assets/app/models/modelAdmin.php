@@ -110,7 +110,18 @@ class ModelAdmin
   }
 
 
-  //todo function getAll()
+  public function getAll(): array | string
+  {
+    try {
+      $req = $this->getBdd()->prepare('SELECT id, nom, prenom, email, `password` FROM `admin`');
+      $req->execute();
+      $data = $req->fetchAll(PDO::FETCH_ASSOC);
+
+      return $data;
+    } catch (EXCEPTION $e) {
+      return $e->getMessage();
+    }
+  }
 
 
 

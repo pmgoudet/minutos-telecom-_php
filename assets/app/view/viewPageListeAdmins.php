@@ -1,9 +1,10 @@
 <?php
 
-class ViewPageAddAdmin
+class ViewPageListeAdmin
 {
 
   private ?string $message = '';
+  private ?string $listAdmins = '';
 
   public function getMessage(): ?string
   {
@@ -13,6 +14,17 @@ class ViewPageAddAdmin
   public function setMessage(?string $newMessage): self
   {
     $this->message = $newMessage;
+    return $this;
+  }
+
+  public function getListAdmins(): ?string
+  {
+    return $this->listAdmins;
+  }
+
+  public function setListAdmins(?string $listAdmins): self
+  {
+    $this->listAdmins = $listAdmins;
     return $this;
   }
 
@@ -28,7 +40,6 @@ class ViewPageAddAdmin
                 alt="Ícone Home" />
               <h2 class="accueil-titre__title">Page d\'Accueil</h2>
             </div>
-            
             <div class="options-perso-container">
               <a href="./controllerAddClient.php" class="options-perso">
                 <img class="options-perso__icon" src="../../img/icon/add-client-icon-minutos-telecom.svg"
@@ -51,48 +62,22 @@ class ViewPageAddAdmin
                 <h2 class="options-perso__title">Liste des Admins</h2>
               </a>
             </div>
-
-            <div class="options-perso">
-              <img class="connect-form__icon" src="../../img/icon/add-client-icon-dark-minutos-telecom.svg"
-                alt="Ícone Dados Pessoais" />
-              <h2 class="connect-form__title">Nouvel Admin</h2>
+            <div class="liste-clients-container">
+              <div class="options-perso">
+                <img class="connect-form__icon" src="../../img/icon/liste-clients-dark-minutos-telecom.svg"
+                  alt="Ícone Dados Pessoais" />
+                <h2 class="connect-form__title">Liste de Admins</h2>
+              </div>
+              <div class="liste-clients">
+                <input class="liste-clients__searchbar" type="search" placeholder="Cherchez le client...">
+                <ul class="liste-clients__liste">'
+      . $this->getListAdmins() .
+      '</ul>
+              </div>
             </div>
-
-            <form class="connect-form" action="" method="POST">
-
-              <div class="form-flex form-flex-nom">
-                <label class="form-label " for="nom-new-admin">Nom</label>
-                <input class="form-input" type="text" id="nom-new-admin" name="nom-new-admin" required />
-              </div>
-
-              <div class="form-flex form-flex-prenom">
-                <label class="form-label" for="prenom-new-admin">Prénom</label>
-                <input class="form-input" type="text" id="prenom-new-admin" name="prenom-new-admin" required />
-              </div>
-
-              <div class="form-flex form-flex-email">
-                <label class="form-label" for="email-new-admin">E-mail</label>
-                <input class="form-input" type="email" id="email-new-admin" name="email-new-admin" required />
-                <p class="form__text-erreur"></p>
-              </div>
-
-              <div class="form-flex mdp-gen form-flex-password">
-                <label class="form-label" for="password-new-admin">Mot de Passe</label>
-                <input class="form-input" type="password" id="password-new-admin" name="password-new-admin" required />
-              </div>
-
-              <div class="form-btn-container">
-                <button class="form-btn" type="reset" name="reset-new-admin" id="reset-new-admin">Annuler</button>
-                <button class="form-btn" type="submit" name="submit-new-admin" id="submit-new-admin">Enregistrer</button>
-              </div>
-
-              <p>' . $this->getMessage() . '</p>
-
-            </form>
-          </div>
         </section>
         </div>
-      </main>    
+      </main>
     ');
   }
 }

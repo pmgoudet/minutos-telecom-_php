@@ -2,6 +2,7 @@
 
 include "../utils/utils.php";
 include "../models/modelAdmin.php";
+include "../models/modelClient.php";
 include "../view/viewHeader.php";
 include "../view/viewPageAdmin.php";
 include "../view/viewPageAdminDeco.php";
@@ -17,14 +18,16 @@ class ControllerLoginAdmin
   private ?ViewHeader $viewHeader;
   private ?ViewFooter $viewFooter;
   private ?ModelAdmin $modelAdmin;
+  private ?ModelClient $modelClient;
 
   //CONSTRUCT
 
-  public function __construct(?ViewPageAdmin $newViewPageAdmin, ?ViewPageAdminDeco $newViewPageAdminDeco, ?ModelAdmin $newModelAdmin)
+  public function __construct(?ViewPageAdmin $newViewPageAdmin, ?ViewPageAdminDeco $newViewPageAdminDeco, ?ModelAdmin $newModelAdmin, ?ModelClient $newModelClient)
   {
     $this->viewPageAdmin = $newViewPageAdmin;
     $this->viewPageAdminDeco = $newViewPageAdminDeco;
     $this->modelAdmin = $newModelAdmin;
+    $this->modelClient = $newModelClient;
   }
 
   //GETTER ET SETTER
@@ -84,6 +87,18 @@ class ControllerLoginAdmin
     return $this;
   }
 
+  public function getModelClient(): ?ModelClient
+  {
+    return $this->modelClient;
+  }
+
+  public function setModelClient(?ModelClient $modelClient): self
+  {
+    $this->modelClient = $modelClient;
+    return $this;
+  }
+
+
   //METHOD
 
   public function seConnecter(): string | null
@@ -128,10 +143,21 @@ class ControllerLoginAdmin
 
   //METHOD
 
-  public function readClients(): string
+  public function readClients(): array | string
   {
-    $usersList = '';
-    return $usersList;
+    $clientList = '';
+
+    $data = $this->getModelClient()->getAll();
+
+    foreach ($data as $client) {
+      $clientList = $clientList . "
+      <li class='liste-clients__liste__item'>
+        <p class='liste-clients__liste__item-nom'>{$client['prenom']} {$client['nom']}</p>
+        <a href='#' class='liste-clients__liste__item-btn'>Voir</a>
+      </li>";
+    }
+
+    return $clientList;
   }
 
   public function render(): void
@@ -139,7 +165,7 @@ class ControllerLoginAdmin
     echo $this->setViewHeader(new ViewHeader)->getViewHeader()->displayView();
 
     if (isset($_SESSION['id'])) {
-      echo $this->getViewPageAdmin()->displayView();
+      echo $this->getViewPageAdmin()->setListClients($this->readClients())->displayView();
     } else {
       echo $this->getViewPageAdminDeco()->setMessage($this->seConnecter())->displayView();
     }
@@ -148,5 +174,5 @@ class ControllerLoginAdmin
   }
 }
 
-$admin = new ControllerLoginAdmin(new ViewPageAdmin(), new ViewPageAdminDeco(), new ModelAdmin());
+$admin = new ControllerLoginAdmin(new ViewPageAdmin(), new ViewPageAdminDeco(), new ModelAdmin(), new ModelClient());
 $admin->render();

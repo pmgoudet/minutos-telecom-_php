@@ -28,8 +28,9 @@ class ViewPageAddClient
               alt="Ícone Home" />
             <h2 class="accueil-titre__title">Page d\'Accueil</h2>
           </div>
+
           <div class="options-perso-container">
-            <a href="#" class="options-perso">
+            <a href="./controllerAddClient.php" class="options-perso">
               <img class="options-perso__icon" src="../../img/icon/add-client-icon-minutos-telecom.svg"
                 alt="Ícone Dados Pessoais" />
               <h2 class="options-perso__title">Nouveau Client</h2>
@@ -44,12 +45,13 @@ class ViewPageAddClient
                 alt="Ícone Dados Pessoais" />
               <h2 class="options-perso__title">Nouvel Admin</h2>
             </a>
-            <a href="#" class="options-perso">
+            <a href="./controllerListeAdmins.php" class="options-perso">
               <img class="options-perso__icon" src="../../img/icon/liste-clients-minutos-telecom.svg"
                 alt="Ícone Dados Pessoais" />
-              <h2 class="options-perso__title">Mes données</h2>
+              <h2 class="options-perso__title">Liste des Admins</h2>
             </a>
           </div>
+
           <div class="options-perso">
             <img class="connect-form__icon" src="../../img/icon/add-client-icon-dark-minutos-telecom.svg"
               alt="Ícone Dados Pessoais" />

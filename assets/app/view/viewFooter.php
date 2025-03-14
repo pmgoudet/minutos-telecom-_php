@@ -108,17 +108,8 @@ class ViewFooter
             | Todos os direitos reservados.
           </p>
         </div>
-      </footer>'
-      .
-      $this->getScript()
-      .
-
-      '</body>
+      </footer></body>
     </html>
     ');
   }
-}
-
-if (basename($_SERVER['SCRIPT_NAME']) === "minutos-telecom-_php/assets/app/controllers/controllerAddClient.php") {
-  $this->setScript('<script src="../../js/backoffice-form.js"></script>');
 }
