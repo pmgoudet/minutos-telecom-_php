@@ -125,7 +125,7 @@ class ViewPageAddClient
               <button type="button" id="btn-mdp-gen">
                 Générer
               </button>
-              <input class="form-input" type="text" id="password" name="password" required />
+              <input class="form-input" type="text" id="password" name="password" value="1234" required />
             </div>
           </div>
 

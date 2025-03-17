@@ -1,42 +1,53 @@
 <?php
 
-// if (isset($_POST['submit'])) {
-//   //variables not vides ou nulls
-//   if (
-//     isset($_POST['pseudo']) && !empty($_POST['pseudo'])
-//     && isset($_POST['email']) && !empty($_POST['email'])
-//     && isset($_POST['mdp']) && !empty($_POST['mdp'])
-//   ) {
+require_once './assets/app/models/modelClient.php'; // include le modele
 
-//     //validation adresse mail
-//     if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-//       $nickname = sanitize($_POST['pseudo']);
-//       $email = sanitize($_POST['email']);
-//       $password = sanitize($_POST['mdp']);
-//       $password = password_hash($password, PASSWORD_BCRYPT);
 
-//       //verification du mail
-//       try {
-//         $data = $this->getModelUser()->setEmail($email)->getByEmail();
+session_start();
 
-//         if (empty($data)) {
-//           $this->getModelUser()->setNickname($nickname)->setEmail($email)->setPassword($password);
+if (isset($_POST['submit-client'])) {
 
-//           $this->getViewHome()->setMessage($this->getModelUser()->add());
-//         } else {
-//           return "Cet adresse mail existe déjà sur un autre compte.";
-//         }
-//       } catch (EXCEPTION $e) {
-//         return $e->getMessage();
-//       }
-//     } else {
-//       return "Le mail n'est pas au bon format";
-//     }
-//   } else {
-//     return "Veuillez remplir les champs obligatoires.";
-//   }
-//   return '';
-// }
+  //variables not vides ou nulls
+  if (isset($_POST['email-client']) && !empty($_POST['email-client']) && isset($_POST['password-client']) && !empty($_POST['password-client'])) {
+    //validation adresse mail
+    if (filter_var($_POST['email-client'], FILTER_VALIDATE_EMAIL)) {
+      $email = sanitize($_POST['email-client']);
+      $password = sanitize($_POST['password-client']);
+
+      //verification du mail
+      $data = $this->getModelUser()->setEmail($email)->getByEmail();
+
+      if (!empty($data)) {
+        if (password_verify($password, $data[0]['password'])) {
+          $_SESSION['id'] = $data[0]['id'];
+          $_SESSION['prenom'] = $data[0]['prenom'];
+          $_SESSION['nom'] = $data[0]['nom'];
+          $_SESSION['sexe'] = $data[0]['sexe'];
+          $_SESSION['date_naissance'] = $data[0]['date_naissance'];
+          $_SESSION['adresse'] = $data[0]['adresse'];
+          $_SESSION['complement'] = $data[0]['complement'];
+          $_SESSION['code_postal'] = $data[0]['code_postal'];
+          $_SESSION['ville'] = $data[0]['ville'];
+          $_SESSION['telephone'] = $data[0]['telephone'];
+          $_SESSION['email'] = $data[0]['email'];
+
+          header('Location:controllerLoginClient.php');
+          exit();
+        } else {
+          $connectionMsg = "Email et/ou mdp incorrect(s).";
+        }
+      } else {
+        $connectionMsg = "Email et/ou mdp incorrect(s).";
+      }
+    } else {
+      $connectionMsg = "Le mail n'est pas au bon format.";
+    }
+  } else {
+    $connectionMsg = 'Veuillez remplir les champs obligatoires.';
+  }
+  $_SESSION['error'] = $connectionMsg;
+}
+  
 
 
 // AQUI VAI A PÁGINA A TRATAR O FORMULARIO NO ACTION

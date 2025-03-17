@@ -103,7 +103,7 @@ class ControllerLoginAdmin
 
   public function script(): void
   {
-    $script = "";
+    $script = "<script src='../../js/search.js'></script>";
     $this->getViewFooter()->setScript($script);
   }
 
@@ -159,7 +159,7 @@ class ControllerLoginAdmin
       $clientList = $clientList . "
       <li class='liste-clients__liste__item'>
         <p class='liste-clients__liste__item-nom'>{$client['prenom']} {$client['nom']}</p>
-        <a href='./controllerEditAdmin.php?id={$client['id']}' class='liste-clients__liste__item-btn'>Voir</a>
+        <a href='./controllerEditClient.php?id={$client['id']}' class='liste-clients__liste__item-btn'>Voir</a>
       </li>";
     }
 

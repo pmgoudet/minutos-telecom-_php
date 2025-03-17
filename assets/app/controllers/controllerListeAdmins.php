@@ -73,6 +73,13 @@ class ControllerListeAdmin
 
   //METHOD
 
+
+  public function script(): void
+  {
+    $script = "<script src='../../js/search.js'></script>";
+    $this->getViewFooter()->setScript($script);
+  }
+
   //! NÃO CONSEGUI FAZER FUNCIONAR A MENSAGEM DE DELETE NA LISTE DE CLIENTS
   public function deleteMsg(): void
   {
@@ -80,12 +87,6 @@ class ControllerListeAdmin
       $this->getViewPageListeAdmin()->setMessage($_SESSION['delete_message']);
       unset($_SESSION['delete_message']);
     }
-  }
-
-  public function script(): void
-  {
-    $script = "";
-    $this->getViewFooter()->setScript($script);
   }
 
   public function readAdmins(): array | string

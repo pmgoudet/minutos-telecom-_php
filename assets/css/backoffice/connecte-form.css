@@ -187,6 +187,22 @@
     }
   }
 
+  #email-edit-admin,
+  #password-edit-admin,
+  #email-new-admin,
+  #password-new-admin {
+    width: 740px;
+  }
+
+  #prenom-edit-admin {
+    width: 100%;
+  }
+
+  #nom-edit-admin,
+  #nom-new-admin {
+    width: 500px;
+
+  }
 }
 
 @media (min-width: 1025px) {}
