@@ -109,6 +109,34 @@ class ModelAdmin
     }
   }
 
+  public function edit(): string
+  {
+    try {
+      $req = $this->getBdd()->prepare("UPDATE `admin`  
+      SET nom = ?, prenom = ?, email = ?, `password` = COALESCE(NULLIF(?, ''), `password`)  WHERE id = ?");
+      //NULLIF transforme une string vide en NULL
+      //COALESCE(NULL, mpd) garde la valeur actuel du mdp si NULL est passé
+
+      $nom = $this->getNom();
+      $prenom = $this->getPrenom();
+      $email = $this->getEmail();
+      $password = $this->getPassword();
+      $id = $this->getId();
+
+      $req->bindParam(1, $nom, PDO::PARAM_STR);
+      $req->bindParam(2, $prenom, PDO::PARAM_STR);
+      $req->bindParam(3, $email, PDO::PARAM_STR);
+      $req->bindParam(4, $password, PDO::PARAM_STR);
+      $req->bindParam(5, $id, PDO::PARAM_STR);
+      $req->execute();
+
+      return "Le compte a été mis à jour.";
+    } catch (EXCEPTION $error) {
+      return $error->getMessage();
+    }
+
+    return '';
+  }
 
   public function getAll(): array | string
   {
@@ -141,13 +169,27 @@ class ModelAdmin
   public function getByEmail(): array | string
   {
     try {
-      $req = $this->getBdd()->prepare("SELECT id, nom, prenom, email, `password` FROM `admin` WHERE email = ? LIMIT 1");
+      $req = $this->getBdd()->prepare("SELECT id, nom, prenom, email, `password` FROM `admin` WHERE email = ?");
       $email = $this->getEmail();
       $req->bindParam(1, $email, PDO::PARAM_STR);
       $req->execute();
       $data = $req->fetchAll(PDO::FETCH_ASSOC);
 
       return $data;
+    } catch (EXCEPTION $e) {
+      return $e->getMessage();
+    }
+  }
+
+  public function delete(): string
+  {
+    try {
+      $req = $this->getBdd()->prepare("DELETE FROM `admin` WHERE id = ? LIMIT 1");
+      $id = $this->getId();
+      $req->bindParam(1, $id, PDO::PARAM_STR);
+      $req->execute();
+
+      return "L'admin d'id $id a été éfacé.";
     } catch (EXCEPTION $e) {
       return $e->getMessage();
     }

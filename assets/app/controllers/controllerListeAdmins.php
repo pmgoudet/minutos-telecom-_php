@@ -26,12 +26,12 @@ class ControllerListeAdmin
 
   //GETTER ET SETTER
 
-  public function getViewPageAdmin(): ?ViewPageListeAdmin
+  public function getViewPageListeAdmin(): ?ViewPageListeAdmin
   {
     return $this->viewPageListeAdmin;
   }
 
-  public function setViewPageAdmin(?ViewPageListeAdmin $viewPageListeAdmin): self
+  public function setViewPageListeAdmin(?ViewPageListeAdmin $viewPageListeAdmin): self
   {
     $this->viewPageListeAdmin = $viewPageListeAdmin;
     return $this;
@@ -73,6 +73,21 @@ class ControllerListeAdmin
 
   //METHOD
 
+  //! NÃO CONSEGUI FAZER FUNCIONAR A MENSAGEM DE DELETE NA LISTE DE CLIENTS
+  public function deleteMsg(): void
+  {
+    if (isset($_SESSION['delete_message'])) {
+      $this->getViewPageListeAdmin()->setMessage($_SESSION['delete_message']);
+      unset($_SESSION['delete_message']);
+    }
+  }
+
+  public function script(): void
+  {
+    $script = "";
+    $this->getViewFooter()->setScript($script);
+  }
+
   public function readAdmins(): array | string
   {
     $adminList = '';
@@ -94,9 +109,11 @@ class ControllerListeAdmin
   {
     echo $this->setViewHeader(new ViewHeader)->getViewHeader()->displayView();
 
-    echo $this->getViewPageAdmin()->setListAdmins($this->readAdmins())->displayView();
+    echo $this->getViewPageListeAdmin()->setListAdmins($this->readAdmins())->displayView();
 
-    echo $this->setViewFooter(new ViewFooter)->getViewFooter()->displayView();
+    $this->setViewFooter(new ViewFooter);
+    $this->script();
+    echo $this->getViewFooter()->displayView();
   }
 }
 

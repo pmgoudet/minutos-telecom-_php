@@ -120,6 +120,7 @@ class ControllerAddClient
           $password = sanitize($_POST['password']);
           $status = sanitize($_POST['status']);
 
+          $password = password_hash($password, PASSWORD_BCRYPT);
 
           //verification du mail
           try {

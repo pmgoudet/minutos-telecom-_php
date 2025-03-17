@@ -101,6 +101,12 @@ class ControllerLoginAdmin
 
   //METHOD
 
+  public function script(): void
+  {
+    $script = "";
+    $this->getViewFooter()->setScript($script);
+  }
+
   public function seConnecter(): string | null
   {
     $connectionMsg = '';
@@ -170,7 +176,9 @@ class ControllerLoginAdmin
       echo $this->getViewPageAdminDeco()->setMessage($this->seConnecter())->displayView();
     }
 
-    echo $this->setViewFooter(new ViewFooter)->getViewFooter()->displayView();
+    $this->setViewFooter(new ViewFooter);
+    $this->script();
+    echo $this->getViewFooter()->displayView();
   }
 }
 

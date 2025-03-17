@@ -109,14 +109,14 @@ class ViewPageEditAdmin
 
             <form class='connect-form' action='' method='POST'>
 
+            <div class='form-flex form-flex-prenom'>
+              <label class='form-label' for='prenom-edit-admin'>Prénom</label>
+              <input class='form-input' type='text' id='prenom-edit-admin' name='prenom-edit-admin' value='" . $this->getPrenom() . "' required disabled />
+            </div>
+
               <div class='form-flex form-flex-nom'>
                 <label class='form-label ' for='nom-edit-admin'>Nom</label>
                 <input class='form-input' type='text' id='nom-edit-admin' name='nom-edit-admin' value='" . $this->getNom() . "' required disabled />
-              </div>
-
-              <div class='form-flex form-flex-prenom'>
-                <label class='form-label' for='prenom-edit-admin'>Prénom</label>
-                <input class='form-input' type='text' id='prenom-edit-admin' name='prenom-edit-admin' value='" . $this->getPrenom() . "' required disabled />
               </div>
 
               <div class='form-flex form-flex-email'>
@@ -127,12 +127,13 @@ class ViewPageEditAdmin
 
               <div class='form-flex mdp-gen form-flex-password'>
                 <label class='form-label' for='password-edit-admin'>Mot de Passe</label>
-                <input class='form-input' type='password' id='password-edit-admin' name='password-edit-admin' required disabled />
+                <input class='form-input' type='password' id='password-edit-admin' name='password-edit-admin' placeholder='Remplissez si vous souhaitez changer le mdp. Si non, laissez-le vide' disabled />
               </div>
 
               <div class='form-btn-container'>
-                <button class='form-btn' type='' name='edit-admin' id='reset-edit-admin'>Editer</button>
-                <button class='form-btn' type='reset' name='reset-edit-admin' id='reset-edit-admin'>Annuler</button>
+                <button class='form-btn' id='edit-admin'>Modifier</button>
+                <button class='form-btn' name='delete-admin' id='delete-admin'>Effacer</button>
+                <button class='form-btn' name='delete-admin' id='reset-edit-admin'>Annuler</button>
                 <button class='form-btn' type='submit' name='submit-edit-admin' id='submit-edit-admin'>Enregistrer</button>
               </div>
 
@@ -146,9 +147,3 @@ class ViewPageEditAdmin
     ");
   }
 }
-
-
-// <div class="form-flex form-flex-nom">
-// <label class="form-label " for="nom">Nom</label>
-// <input class="form-input" type="text" id="nom" name="nom" value="Laurent" required disabled disabled />
-// </div>

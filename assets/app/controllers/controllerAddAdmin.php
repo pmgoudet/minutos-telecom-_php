@@ -72,6 +72,12 @@ class ControllerAddAdmin
 
   //METHOD
 
+  public function script(): void
+  {
+    $script = "";
+    $this->getViewFooter()->setScript($script);
+  }
+
   public function addAdmin(): string
   {
     $msg = '';
@@ -125,7 +131,9 @@ class ControllerAddAdmin
 
     echo $this->getViewPageAddAdmin()->setMessage($this->addAdmin())->displayView();
 
-    echo $this->setViewFooter(new ViewFooter)->getViewFooter()->displayView();
+    $this->setViewFooter(new ViewFooter);
+    $this->script();
+    echo $this->getViewFooter()->displayView();
   }
 }
 
