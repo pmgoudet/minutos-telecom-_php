@@ -92,7 +92,8 @@ class ControllerEditClient
 
   public function script(): void
   {
-    $script = "<script src='../../js/edit-data.js'></script>";
+    $script = "<script src='../../js/edit-data.js'></script>
+    <script src='../../js/backoffice-form.js'></script>";
     $this->getViewFooter()->setScript($script);
   }
 
