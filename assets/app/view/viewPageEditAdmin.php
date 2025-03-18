@@ -133,7 +133,7 @@ class ViewPageEditAdmin
               <div class='form-btn-container'>
                 <button class='form-btn' id='edit-admin'>Modifier</button>
                 <button class='form-btn' name='delete-admin' id='delete-admin'>Effacer</button>
-                <button class='form-btn' name='delete-admin' id='reset-edit-admin'>Annuler</button>
+                <button class='form-btn' name='reset-admin' id='reset-edit-admin'>Annuler</button>
                 <button class='form-btn' type='submit' name='submit-edit-admin' id='submit-edit-admin'>Enregistrer</button>
               </div>
 

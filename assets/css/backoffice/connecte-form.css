@@ -97,6 +97,10 @@
   margin-top: 20px;
 }
 
+#delete-admin {
+  background-color: rgb(156, 0, 0);
+}
+
 
 @media screen and (min-width: 480px) {
 
