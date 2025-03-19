@@ -1,7 +1,6 @@
 <?php
 
-require_once './assets/app/models/modelClient.php'; // include le modele
-
+include '../../assets/app/utils/utils.php';
 
 session_start();
 
@@ -10,10 +9,13 @@ if (isset($_POST['submit-client'])) {
   //variables not vides ou nulls
   if (isset($_POST['email-client']) && !empty($_POST['email-client']) && isset($_POST['password-client']) && !empty($_POST['password-client'])) {
     //validation adresse mail
+
+
     if (filter_var($_POST['email-client'], FILTER_VALIDATE_EMAIL)) {
       $email = sanitize($_POST['email-client']);
       $password = sanitize($_POST['password-client']);
 
+      var_dump($_POST);
       //verification du mail
       $data = $this->getModelUser()->setEmail($email)->getByEmail();
 

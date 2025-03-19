@@ -92,8 +92,9 @@ class ControllerLoginClient
           $data = $this->getModelClient()->setEmail($email)->getByEmail();
 
           if (!empty($data)) {
+
             if (password_verify($password, $data[0]['password'])) {
-              $_SESSION['id'] = $data[0]['id'];
+              $_SESSION['id_client'] = $data[0]['id'];
               $_SESSION['prenom'] = $data[0]['prenom'];
               $_SESSION['nom'] = $data[0]['nom'];
               $_SESSION['sexe'] = $data[0]['sexe'];
@@ -104,6 +105,8 @@ class ControllerLoginClient
               $_SESSION['ville'] = $data[0]['ville'];
               $_SESSION['telephone'] = $data[0]['telephone'];
               $_SESSION['email'] = $data[0]['email'];
+
+              var_dump($_SESSION);
 
               header('Location:controllerLoginClient.php');
               exit();
@@ -128,7 +131,12 @@ class ControllerLoginClient
     echo $this->setViewHeader(new ViewHeader)->getViewHeader()->displayView();
 
     $this->seConnecter();
-    echo $this->getViewLoginClient()->displayView();
+    if (isset($_SESSION['id_client'])) {
+      echo $this->getViewLoginClient()->displayView();
+    } else {
+      header("location: ../../pages/area-do-cliente.html");
+      //! COMO FAZER A MENSAGEM APARECER?
+    }
 
     $this->setViewFooter(new ViewFooter);
     $this->script();

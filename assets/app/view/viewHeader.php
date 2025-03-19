@@ -30,7 +30,8 @@ class viewHeader
 
     public function displayView(): string
     {
-        if (isset($_SESSION['id'])) {
+
+        if (isset($_SESSION['id_admin']) || isset($_SESSION['id_client'])) {
             return ('
             <!DOCTYPE html>
             <html lang="pt-br">

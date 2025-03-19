@@ -124,7 +124,7 @@ class ControllerLoginAdmin
           $data = $this->getModelAdmin()->getByEmail();
           if (!empty($data)) {
             if (password_verify($password, $data[0]['password'])) {
-              $_SESSION['id'] = $data[0]['id'];
+              $_SESSION['id_admin'] = $data[0]['id'];
               $_SESSION['nom'] = $data[0]['nom'];
               $_SESSION['prenom'] = $data[0]['prenom'];
               $_SESSION['email'] = $data[0]['email'];
@@ -170,7 +170,7 @@ class ControllerLoginAdmin
   {
     echo $this->setViewHeader(new ViewHeader)->getViewHeader()->displayView();
 
-    if (isset($_SESSION['id'])) {
+    if (isset($_SESSION['id_admin'])) {
       echo $this->getViewPageAdmin()->setListClients($this->readClients())->displayView();
     } else {
       echo $this->getViewPageAdminDeco()->setMessage($this->seConnecter())->displayView();
