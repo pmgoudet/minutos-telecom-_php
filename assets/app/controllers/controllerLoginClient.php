@@ -76,7 +76,7 @@ class ControllerLoginClient
     $this->getViewFooter()->setScript($script);
   }
 
-  public function seConnecter(): string
+  public function seConnecter(): string //!APAGAR NÉ????
   {
     $connectionMsg = '';
     if (isset($_POST['submit-client'])) {
