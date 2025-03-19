@@ -80,8 +80,8 @@ class ControllerListeAdmin
     $this->getViewFooter()->setScript($script);
   }
 
-  //! NÃO CONSEGUI FAZER FUNCIONAR A MENSAGEM DE DELETE NA LISTE DE CLIENTS
   public function deleteMsg(): void
+  //! NÃO CONSEGUI FAZER FUNCIONAR A MENSAGEM DE DELETE NA LISTE DE CLIENTS
   {
     if (isset($_SESSION['delete_message'])) {
       $this->getViewPageListeAdmin()->setMessage($_SESSION['delete_message']);

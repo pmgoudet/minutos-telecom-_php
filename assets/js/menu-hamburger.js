@@ -10,9 +10,9 @@ function toggleMenu() {
 }
 
 function menuResponsif() {
-    const width = window.innerWidth;
+    const largeur = window.innerWidth;
 
-    if (width > 480) {
+    if (largeur > 480) {
         nav.classList.add('active');
     } else {
         nav.classList.remove('active');
