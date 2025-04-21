@@ -93,8 +93,14 @@ class ControllerLoginClient
 
           if (!empty($data)) {
 
+            //! INCLUIR ISSO AQUI
+            //   if ($client['id_status'] != 1) {
+            //     echo "Sua conta está inativa. Entre em contato com o suporte.";
+            // }
+
+
             if (password_verify($password, $data[0]['password'])) {
-              $_SESSION['id_client'] = $data[0]['id'];
+              $_SESSION['id_client'] = $data[0]['id_client'];
               $_SESSION['prenom'] = $data[0]['prenom'];
               $_SESSION['nom'] = $data[0]['nom'];
               $_SESSION['sexe'] = $data[0]['sexe'];

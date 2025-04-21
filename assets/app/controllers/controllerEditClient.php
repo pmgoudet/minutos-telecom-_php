@@ -99,9 +99,9 @@ class ControllerEditClient
 
   public function showClient(): string
   {
-    if (isset($_GET['id'])) {
+    if (isset($_GET['id_client'])) {
 
-      $id = $_GET['id'];
+      $id = $_GET['id_client'];
       $data = $this->getModelClient()->setId($id)->getById();
 
       $this->getViewPageEditClient()->setNom($data[0]['nom']);

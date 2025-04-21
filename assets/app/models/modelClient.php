@@ -14,7 +14,8 @@ class ModelClient
   private int $telephone;
   private string $email;
   private string $password;
-  private string $status;
+  private string $id_status;
+  private string $id_admin;
   private PDO $bdd;
 
   //CONSTRUCT
@@ -158,14 +159,25 @@ class ModelClient
     return $this;
   }
 
-  public function getStatus(): string
+  public function getIdStatus(): string
   {
-    return $this->status;
+    return $this->id_status;
   }
 
-  public function setStatus(string $status): self
+  public function setIdStatus(string $id_status): self
   {
-    $this->status = $status;
+    $this->id_status = $id_status;
+    return $this;
+  }
+
+  public function getIdAdmin(): string
+  {
+    return $this->id_admin;
+  }
+
+  public function setIdAdmin(string $id_admin): self
+  {
+    $this->id_admin = $id_admin;
     return $this;
   }
 
@@ -187,8 +199,8 @@ class ModelClient
   {
     try {
       $req = $this->getBdd()->prepare("INSERT INTO `client` 
-      (nom, prenom, sexe, date_naissance, adresse, complement, code_postal, ville, telephone, email, `password`, `status`) 
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+      (nom, prenom, sexe, date_naissance, adresse, complement, code_postal, ville, telephone, email, `password`, id_status, id_admin) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
       $nom = $this->getNom();
       $prenom = $this->getPrenom();
@@ -201,7 +213,8 @@ class ModelClient
       $telephone = $this->getTelephone();
       $email = $this->getEmail();
       $password = $this->getPassword();
-      $status = $this->getStatus();
+      $id_status = $this->getIdStatus();
+      $id_admin = $this->getIdAdmin();
 
       $req->bindParam(1, $nom, PDO::PARAM_STR);
       $req->bindParam(2, $prenom, PDO::PARAM_STR);
@@ -214,7 +227,8 @@ class ModelClient
       $req->bindParam(9, $telephone, PDO::PARAM_STR);
       $req->bindParam(10, $email, PDO::PARAM_STR);
       $req->bindParam(11, $password, PDO::PARAM_STR);
-      $req->bindParam(12, $status, PDO::PARAM_STR);
+      $req->bindParam(12, $id_status, PDO::PARAM_STR);
+      $req->bindParam(13, $id_admin, PDO::PARAM_STR);
       $req->execute();
 
       return "L'enregistrement de $prenom $nom, dont l'email est $email, a été effectué avec succès.";
@@ -227,7 +241,7 @@ class ModelClient
   public function getAll(): array | string
   {
     try {
-      $req = $this->getBdd()->prepare('SELECT id, nom, prenom, sexe, date_naissance, adresse, complement, code_postal, ville, telephone, email, `password` FROM `client`');
+      $req = $this->getBdd()->prepare('SELECT id_client, nom, prenom, sexe, date_naissance, adresse, complement, code_postal, ville, telephone, email, `password`, id_status, id_admin FROM `client`');
       $req->execute();
       $data = $req->fetchAll(PDO::FETCH_ASSOC);
 
@@ -240,7 +254,7 @@ class ModelClient
   public function getByEmail(): array | string
   {
     try {
-      $req = $this->getBdd()->prepare("SELECT id, nom, prenom, sexe, date_naissance, adresse, complement, code_postal, ville, telephone, email, `password`, `status` FROM `client` WHERE email = ? LIMIT 1");
+      $req = $this->getBdd()->prepare("SELECT id_client, nom, prenom, sexe, date_naissance, adresse, complement, code_postal, ville, telephone, email, `password`, id_status, id_admin FROM `client` WHERE email = ? LIMIT 1");
       $email = $this->getEmail();
       $req->bindParam(1, $email, PDO::PARAM_STR);
       $req->execute();
@@ -255,7 +269,7 @@ class ModelClient
   public function getById(): array | string
   {
     try {
-      $req = $this->getBdd()->prepare("SELECT id, nom, prenom, sexe, date_naissance, adresse, complement, code_postal, ville, telephone, email, `password`, `status` FROM `client` WHERE id = ? LIMIT 1");
+      $req = $this->getBdd()->prepare("SELECT id_client, nom, prenom, sexe, date_naissance, adresse, complement, code_postal, ville, telephone, email, `password`, id_status, id_admin FROM `client` WHERE id_client = ? LIMIT 1");
       $id = $this->getId();
       $req->bindParam(1, $id, PDO::PARAM_STR);
       $req->execute();

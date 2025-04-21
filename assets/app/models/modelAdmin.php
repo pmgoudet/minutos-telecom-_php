@@ -113,7 +113,7 @@ class ModelAdmin
   {
     try {
       $req = $this->getBdd()->prepare("UPDATE `admin`  
-      SET nom = ?, prenom = ?, email = ?, `password` = COALESCE(NULLIF(?, ''), `password`)  WHERE id = ?");
+      SET nom = ?, prenom = ?, email = ?, `password` = COALESCE(NULLIF(?, ''), `password`)  WHERE id_admin = ?");
       //NULLIF transforme une string vide en NULL
       //COALESCE(NULL, mpd) garde la valeur actuel du mdp si NULL est passé
 
@@ -141,7 +141,7 @@ class ModelAdmin
   public function getAll(): array | string
   {
     try {
-      $req = $this->getBdd()->prepare('SELECT id, nom, prenom, email, `password` FROM `admin`');
+      $req = $this->getBdd()->prepare('SELECT id_admin, nom, prenom, email, `password` FROM `admin`');
       $req->execute();
       $data = $req->fetchAll(PDO::FETCH_ASSOC);
 
@@ -154,7 +154,7 @@ class ModelAdmin
   public function getById(): array | string
   {
     try {
-      $req = $this->getBdd()->prepare("SELECT id, nom, prenom, email, `password` FROM `admin` WHERE id = ? LIMIT 1");
+      $req = $this->getBdd()->prepare("SELECT id_admin, nom, prenom, email, `password` FROM `admin` WHERE id = ? LIMIT 1");
       $id = $this->getId();
       $req->bindParam(1, $id, PDO::PARAM_STR);
       $req->execute();
@@ -169,7 +169,7 @@ class ModelAdmin
   public function getByEmail(): array | string
   {
     try {
-      $req = $this->getBdd()->prepare("SELECT id, nom, prenom, email, `password` FROM `admin` WHERE email = ?");
+      $req = $this->getBdd()->prepare("SELECT id_admin, nom, prenom, email, `password` FROM `admin` WHERE email = ?");
       $email = $this->getEmail();
       $req->bindParam(1, $email, PDO::PARAM_STR);
       $req->execute();
@@ -184,7 +184,7 @@ class ModelAdmin
   public function delete(): string
   {
     try {
-      $req = $this->getBdd()->prepare("DELETE FROM `admin` WHERE id = ? LIMIT 1");
+      $req = $this->getBdd()->prepare("DELETE FROM `admin` WHERE id_admin = ? LIMIT 1");
       $id = $this->getId();
       $req->bindParam(1, $id, PDO::PARAM_STR);
       $req->execute();

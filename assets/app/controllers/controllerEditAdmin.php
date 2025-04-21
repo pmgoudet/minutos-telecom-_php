@@ -97,9 +97,9 @@ class ControllerEditAdmin
 
   public function showAdmin(): string
   {
-    if (isset($_GET['id'])) {
+    if (isset($_GET['id_admin'])) {
 
-      $id = $_GET['id'];
+      $id = $_GET['id_admin'];
       $data = $this->getModelAdmin()->setId($id)->getById();
 
       $this->getViewPageEditAdmin()->setPrenom($data[0]['prenom']);
@@ -116,7 +116,7 @@ class ControllerEditAdmin
   public function editAdmin(): string
   {
     $msg = '';
-    $id = $_GET['id'];
+    $id = $_GET['id_admin'];
 
     if (isset($_POST['submit-edit-admin'])) {
       if (
@@ -125,7 +125,7 @@ class ControllerEditAdmin
         && isset($_POST['email-edit-admin']) && !empty($_POST['email-edit-admin'])
       ) {
         if (filter_var($_POST['email-edit-admin'], FILTER_VALIDATE_EMAIL)) {
-          $id = sanitize($_GET['id']);
+          $id = sanitize($_GET['id_admin']);
           $nom = sanitize($_POST['nom-edit-admin']);
           $prenom = sanitize($_POST['prenom-edit-admin']);
           $email = sanitize($_POST['email-edit-admin']);
@@ -139,7 +139,7 @@ class ControllerEditAdmin
             $data = $this->getModelAdmin()->setEmail($email)->getByEmail();
 
             //retirer de $data le propre utilisateur pour verifier juste les autres. fn($user) est la fonction callback que verifie que les utilisateurs n'ont pas le meme id que celui ci que l'on edite
-            $data = array_filter($data, fn($user) => $user['id'] != $id);
+            $data = array_filter($data, fn($user) => $user['id_admin'] != $id);
 
             //l'adresse mail existe deja, if faut vérifier s'il y a un 2eme
             if (empty($data)) {
@@ -173,7 +173,7 @@ class ControllerEditAdmin
   {
     if (isset($_POST['delete-admin'])) {
 
-      $id = $_GET['id'];
+      $id = $_GET['id_admin'];
 
       $msg = $this->getModelAdmin()->setId($id)->delete();
       $_SESSION['delete_msg'] = $msg; //! A FINIR

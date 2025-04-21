@@ -124,7 +124,7 @@ class ControllerLoginAdmin
           $data = $this->getModelAdmin()->getByEmail();
           if (!empty($data)) {
             if (password_verify($password, $data[0]['password'])) {
-              $_SESSION['id_admin'] = $data[0]['id'];
+              $_SESSION['id_admin'] = $data[0]['id_admin'];
               $_SESSION['nom'] = $data[0]['nom'];
               $_SESSION['prenom'] = $data[0]['prenom'];
               $_SESSION['email'] = $data[0]['email'];
@@ -159,7 +159,7 @@ class ControllerLoginAdmin
       $clientList = $clientList . "
       <li class='liste-clients__liste__item'>
         <p class='liste-clients__liste__item-nom'>{$client['prenom']} {$client['nom']}</p>
-        <a href='./controllerEditClient.php?id={$client['id']}' class='liste-clients__liste__item-btn'>Voir</a>
+        <a href='./controllerEditClient.php?id={$client['id_admin']}' class='liste-clients__liste__item-btn'>Voir</a>
       </li>";
     }
 
