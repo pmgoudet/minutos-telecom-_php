@@ -40,3 +40,7 @@ Pour l'instant, le système est limité par les fonctionnalités décrites ci-de
 
 ### 🗂️ CMS / Interface
 ![WordPress](https://img.shields.io/badge/-WordPress-21759B?logo=wordpress&logoColor=white) *(non utilisé dans ce projet, mais domaine confirmé)*
+
+## 🔗 Autres liens
+- 🌐 [Mon portfolio complet](https://pedrogoudet.vercel.app/)
+- 🧑‍💼 [Mon profil LinkedIn](https://www.linkedin.com/in/pmgoudet)
